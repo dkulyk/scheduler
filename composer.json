@@ -1,0 +1,19 @@
+{
+    "name": "dkulyk/scheduler",
+    "description": "Scheduler for laravel jobs",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmytro Kulyk",
+            "email": "dmytro@dkulyk.name"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "module": {
+            "providers": [
+                "\\DKulyk\\Scheduler\\ModuleProvider"
+            ]
+        }
+    }
+}
