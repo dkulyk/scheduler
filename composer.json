@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": "^7.1.3",
+        "awesome-nova/tool-actions": "^0.1.0",
         "illuminate/database": "^5.7",
         "illuminate/support": "^5.7"
     },
