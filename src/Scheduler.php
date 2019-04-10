@@ -15,7 +15,7 @@ final class Scheduler
      * @param  string  $job
      * @return $this
      */
-    public function registerJob(string $job): Scheduler
+    public function registerJob(string $job): self
     {
         $this->jobs[$job] = $job;
 
@@ -29,6 +29,4 @@ final class Scheduler
     {
         return $this->jobs;
     }
-
-
 }

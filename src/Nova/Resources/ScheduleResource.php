@@ -1,17 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Nova\Resources;
 
-use DKulyk\Eloquent\Extensions\Nova\Filters\EnabledFilter;
-use DKulyk\Scheduler\Nova\Actions\AddScheduleAction;
-use DKulyk\Scheduler\ScheduleRegistrar;
-use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Nova\Resource;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\{Boolean, HasMany, ID, Text, Textarea};
 use DKulyk\Scheduler\Entities;
+use Illuminate\Console\Scheduling\Schedule;
 use RabbitCMS\Modules\Concerns\BelongsToModule;
+use DKulyk\Scheduler\Nova\Actions\AddScheduleAction;
+use DKulyk\Eloquent\Extensions\Nova\Filters\EnabledFilter;
+use Laravel\Nova\Fields\{Boolean, HasMany, ID, Text, Textarea};
 
 /**
  * Class ScheduleResource.
@@ -79,6 +79,7 @@ class ScheduleResource extends Resource
                         && method_exists($this->resource->job, 'schedulerLabel')) {
                         return call_user_func([$this->resource->job, 'schedulerLabel']);
                     }
+
                     return $this->resource->job;
                 })
                 ->readonly(true),

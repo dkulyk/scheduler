@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Nova\Resources;
 
-use DKulyk\Scheduler\Entities\ScheduleLog;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\{Code, DateTime, ID, Select, Status, Text};
 use Laravel\Nova\Resource;
+use Illuminate\Http\Request;
+use DKulyk\Scheduler\Entities\ScheduleLog;
 use RabbitCMS\Modules\Concerns\BelongsToModule;
+use Laravel\Nova\Fields\{Code, DateTime, ID, Select, Status, Text};
 
 /**
  * Class LogResource.
@@ -79,9 +79,9 @@ class LogResource extends Resource
                     switch ($this->resource->status) {
                         case 0:
                             return $module->trans('scheduler.Pending');
-                        case 1 :
+                        case 1:
                             return $module->trans('scheduler.Finished');
-                        case 2 :
+                        case 2:
                             return $module->trans('scheduler.Error');
                     }
 
@@ -96,6 +96,4 @@ class LogResource extends Resource
                 ->hideFromIndex(),
         ];
     }
-
-
 }
