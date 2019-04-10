@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DKulyk\Scheduler\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class ScheduleLog
- * @package DKulyk\Scheduler\Entities
+ * Class ScheduleLog.
  */
 final class ScheduleLog extends Model
 {

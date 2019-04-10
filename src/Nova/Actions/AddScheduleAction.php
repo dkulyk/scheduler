@@ -7,8 +7,8 @@ namespace DKulyk\Scheduler\Nova\Actions;
 use AwesomeNova\Actions\ToolAction;
 use DKulyk\Scheduler\Entities\Schedule;
 use DKulyk\Scheduler\Facades\Scheduler;
-use Laravel\Nova\Fields\{ActionFields, Select, Text, Textarea};
 use RabbitCMS\Modules\Concerns\BelongsToModule;
+use Laravel\Nova\Fields\{ActionFields, Select, Text, Textarea};
 
 /**
  * Class AddScheduleAction.
@@ -74,6 +74,7 @@ class AddScheduleAction extends ToolAction
                         && method_exists($job, 'schedulerLabel')) {
                         return [$job => call_user_func([$job, 'schedulerLabel'])];
                     }
+
                     return [$job => $job];
                 })->all())
                 ->rules('required')

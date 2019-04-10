@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DKulyk\Scheduler;
 
 use Illuminate\Bus\Dispatcher;
-use DKulyk\Scheduler\Entities;
 use DKulyk\Scheduler\Jobs\ScheduleJob;
 use Illuminate\Console\Scheduling\Schedule;
 

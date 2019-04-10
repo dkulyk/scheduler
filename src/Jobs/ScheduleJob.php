@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Jobs;
@@ -6,8 +7,8 @@ namespace DKulyk\Scheduler\Jobs;
 use DateInterval;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Bus\Dispatcher;
 use DKulyk\Scheduler\Entities;
+use Illuminate\Bus\Dispatcher;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Foundation\Application;

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Entities;
 
-use DKulyk\Eloquent\Extensions\Concerns\HasEnabled;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DKulyk\Eloquent\Extensions\Concerns\HasEnabled;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Schedule
- * @package DKulyk\Scheduler\Entities
+ * Class Schedule.
  * @property-read int $id
  * @property string|null $schedule
  * @property string|null $event
@@ -55,4 +54,3 @@ final class Schedule extends Model
         return $this->hasMany(ScheduleLog::class, 'schedule_id');
     }
 }
-
