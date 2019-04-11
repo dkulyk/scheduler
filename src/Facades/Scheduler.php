@@ -18,6 +18,6 @@ final class Scheduler extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'dkulyk.scheduler';
+        return \DKulyk\Scheduler\Scheduler::class;
     }
 }
