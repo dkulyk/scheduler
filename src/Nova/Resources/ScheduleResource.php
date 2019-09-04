@@ -7,7 +7,6 @@ namespace DKulyk\Scheduler\Nova\Resources;
 use Laravel\Nova\Resource;
 use Illuminate\Http\Request;
 use DKulyk\Scheduler\Entities;
-use Illuminate\Console\Scheduling\Schedule;
 use RabbitCMS\Modules\Concerns\BelongsToModule;
 use DKulyk\Scheduler\Nova\Actions\AddScheduleAction;
 use DKulyk\Eloquent\Extensions\Nova\Filters\EnabledFilter;

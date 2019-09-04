@@ -57,8 +57,7 @@ final class ScheduleJob implements ShouldQueue
             $log->update([
                 'status' => 1,
                 'stopped_at' => Carbon::now(),
-                'exception' =>
-                    json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+                'exception' => json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ]);
         } catch (\Throwable $exception) {
             $log->update([
