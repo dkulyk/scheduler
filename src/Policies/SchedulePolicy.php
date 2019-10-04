@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DKulyk\Scheduler\Policy;
+namespace DKulyk\Scheduler\Policies;
 
 use DKulyk\Scheduler\Entities\Schedule;
 use DtKt\Nova\Policies\ModelPolicy;
