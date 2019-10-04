@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Policy;
 
-use DKulyk\Scheduler\Entities\Schedule;
 use DtKt\Nova\Policies\ModelPolicy;
+use DKulyk\Scheduler\Entities\Schedule;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SchedulePolicy
+ * Class SchedulePolicy.
  */
 class SchedulePolicy extends ModelPolicy
 {
-
     /**
      * @return Model
      */
