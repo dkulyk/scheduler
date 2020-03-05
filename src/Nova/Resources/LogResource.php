@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Nova\Resources;
 
-use Laravel\Nova\Resource;
-use Illuminate\Http\Request;
 use DKulyk\Scheduler\Entities\ScheduleLog;
-use RabbitCMS\Modules\Concerns\BelongsToModule;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\{Code, DateTime, ID, Select, Status, Text};
+use Laravel\Nova\Resource;
+use RabbitCMS\Modules\Concerns\BelongsToModule;
 
 /**
  * Class LogResource.

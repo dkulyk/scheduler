@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DKulyk\Eloquent\Extensions\Concerns\HasEnabled;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Schedule.

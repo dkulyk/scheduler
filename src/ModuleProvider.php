@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Class ModuleProvider.
