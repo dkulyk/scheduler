@@ -15,6 +15,11 @@ final class ModuleProvider extends ServiceProvider
 {
     public function register()
     {
+        Relation::morphMap([
+            'scheduler' => Scheduler::class,
+            'scheduler_log' => Entities\ScheduleLog::class,
+        ]);
+
         $this->app->singleton(Scheduler::class, function () {
             return new Scheduler();
         });
@@ -26,13 +31,5 @@ final class ModuleProvider extends ServiceProvider
                     $registrar->register($schedule);
                 }, 100);
         });
-    }
-
-    public function boot()
-    {
-        Relation::morphMap([
-            'scheduler' => Scheduler::class,
-            'scheduler_log' => Entities\ScheduleLog::class,
-        ]);
     }
 }
