@@ -13,7 +13,7 @@ use Illuminate\Console\Scheduling\Schedule;
  */
 class ScheduleRegistrar
 {
-    private static $allowed = [
+    private static array $allowed = [
         'cron',
         'everyMinute',
         'everyFiveMinutes',
@@ -43,25 +43,15 @@ class ScheduleRegistrar
         'saturdays',
         'between',
     ];
-    /**
-     * @var \Illuminate\Console\Scheduling\Schedule
-     */
-    private $scheduler;
 
-    /**
-     * ScheduleRegistrar constructor.
-     * @param  \Illuminate\Console\Scheduling\Schedule  $scheduler
-     */
+    private Schedule $scheduler;
+
     public function __construct(Schedule $scheduler)
     {
         $this->scheduler = $scheduler;
     }
 
-    /**
-     * @param  \DKulyk\Scheduler\Entities\Schedule  $schedule
-     * @return \Illuminate\Console\Scheduling\CallbackEvent
-     */
-    public function register(Entities\Schedule $schedule)
+    public function register(Entities\Schedule $schedule):CallbackEvent
     {
         $event = $this->scheduler->call(function (Dispatcher $dispatcher) use ($schedule) {
             $dispatcher->dispatch(new ScheduleJob($schedule));

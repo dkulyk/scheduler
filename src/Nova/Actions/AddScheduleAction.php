@@ -41,9 +41,6 @@ class AddScheduleAction extends ToolAction
         return self::module()->trans('scheduler.Add schedule');
     }
 
-    /**
-     * @param  \Laravel\Nova\Fields\ActionFields  $fields
-     */
     public function handle(ActionFields $fields)
     {
         Schedule::query()->create($fields->getAttributes());
@@ -70,12 +67,11 @@ class AddScheduleAction extends ToolAction
 
             Select::make($module->trans('scheduler.Job'), 'job')
                 ->options(collect($jobs = Scheduler::getJobs())->mapWithKeys(function (string $job) {
-                    if (class_exists($job)
-                        && method_exists($job, 'schedulerLabel')) {
-                        return [$job => call_user_func([$job, 'schedulerLabel'])];
-                    }
-
-                    return [$job => $job];
+                    return [
+                        $job => class_exists($job) && method_exists($job, 'schedulerLabel')
+                            ? call_user_func([$job, 'schedulerLabel'])
+                            : $job,
+                    ];
                 })->all())
                 ->rules('required')
                 ->displayUsingLabels(),

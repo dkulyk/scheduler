@@ -25,26 +25,17 @@ class ScheduleResource extends Resource
 
     public static $globallySearchable = false;
 
-    /**
-     * @return string
-     */
-    public static function uriKey()
+    public static function uriKey(): string
     {
         return 'scheduler';
     }
 
-    public static function authorizedToCreate(Request $request)
+    public static function authorizedToCreate(Request $request): bool
     {
         return false;
     }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
+    public function fields(Request $request): array
     {
         $module = static::module();
 
@@ -63,9 +54,7 @@ class ScheduleResource extends Resource
                 ->rules(['required', 'min:1'])
                 ->hideFromIndex()
                 ->alwaysShow()
-                ->canSee(function () {
-                    return ! is_null($this->resource->schedule);
-                }),
+                ->canSee(fn() => ! is_null($this->resource->schedule)),
 
             Text::make($module->trans('scheduler.Delay'), 'delay')
                 ->rules(['regex:/^P(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+S)?)?$/'])
@@ -87,9 +76,8 @@ class ScheduleResource extends Resource
             HasMany::make($module->trans('scheduler.Log'), 'logs', LogResource::class),
 
             $this->merge(function () use ($request) {
-                if (class_exists($this->resource->job ?? '')
-                    && method_exists($this->resource->job, 'schedulerOptions')) {
-                    return call_user_func([$this->resource->job, 'schedulerOptions'], $request);
+                if (class_exists($this->resource->job ?? '') && method_exists($this->resource->job, 'schedulerOptions')) {
+                    return call_user_func([$this->resource->job, 'schedulerOptions'], $request, $this->resource->options);
                 }
 
                 return [];
@@ -98,7 +86,7 @@ class ScheduleResource extends Resource
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function filters(Request $request)
@@ -109,7 +97,7 @@ class ScheduleResource extends Resource
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function actions(Request $request)

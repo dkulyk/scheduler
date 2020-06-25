@@ -20,9 +20,7 @@ final class ModuleProvider extends ServiceProvider
             'scheduler_log' => Entities\ScheduleLog::class,
         ]);
 
-        $this->app->singleton(Scheduler::class, function () {
-            return new Scheduler();
-        });
+        $this->app->singleton(Scheduler::class, fn() => new Scheduler());
 
         $this->app->afterResolving(Schedule::class, function (Schedule $scheduler) {
             $registrar = new ScheduleRegistrar($scheduler);

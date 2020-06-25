@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Facade;
  */
 final class Scheduler extends Facade
 {
-    /**
-     * @return string
-     */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \DKulyk\Scheduler\Scheduler::class;
     }

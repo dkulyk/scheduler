@@ -29,9 +29,6 @@ final class ScheduleLog extends Model
         'stopped_at',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function schedule(): BelongsTo
     {
         return $this->belongsTo(Schedule::class, 'schedule_id')->withoutTrashed();

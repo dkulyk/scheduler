@@ -6,12 +6,14 @@ namespace DKulyk\Scheduler\Jobs;
 
 use DateInterval;
 use Carbon\Carbon;
+use DKulyk\Scheduler\Entities\Schedule;
 use Illuminate\Bus\Queueable;
-use DKulyk\Scheduler\Entities;
+
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Foundation\Application;
+use Throwable;
 
 /**
  * Class ScheduleJob.
@@ -21,17 +23,9 @@ final class ScheduleJob implements ShouldQueue
     use SerializesModels;
     use Queueable;
 
-    /**
-     * @var \DKulyk\Scheduler\Entities\Schedule
-     */
-    private $schedule;
+    private Schedule $schedule;
 
-    /**
-     * ScheduleJob constructor.
-     * @param  \DKulyk\Scheduler\Entities\Schedule  $schedule
-     * @throws \Exception
-     */
-    public function __construct(Entities\Schedule $schedule)
+    public function __construct(Schedule $schedule)
     {
         $this->schedule = $schedule;
 
@@ -40,17 +34,13 @@ final class ScheduleJob implements ShouldQueue
         }
     }
 
-    /**
-     * @param  \Illuminate\Bus\Dispatcher  $dispatcher
-     * @param  \Illuminate\Contracts\Foundation\Application  $application
-     * @throws \Throwable
-     */
     public function handle(Dispatcher $dispatcher, Application $application)
     {
         $log = $this->schedule->logs()->create([
             'started_at' => Carbon::now(),
             'status' => 0,
         ]);
+
         try {
             $result = $dispatcher->dispatchNow($application->make($this->schedule->job, $this->schedule->options));
 
@@ -60,7 +50,7 @@ final class ScheduleJob implements ShouldQueue
                 'exception' =>
                     json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ]);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             $log->update([
                 'status' => 2,
                 'stopped_at' => Carbon::now(),

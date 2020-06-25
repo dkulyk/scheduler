@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\{Collection, Model, Relations\HasMany, SoftDeletes};
 use DKulyk\Eloquent\Extensions\Concerns\HasEnabled;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use DKulyk\Scheduler\Support\CryptOptions;
 
 /**
  * Class Schedule.
@@ -18,11 +18,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $enabled
  * @property string $delay
  * @property array $options
- * @property-read \Carbon\Carbon $created_at
- * @property-read \Carbon\Carbon $updated_at
- * @property-read \Carbon\Carbon|null $deleted_at
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ * @property-read Carbon|null $deleted_at
  *
- * @property-read \DKulyk\Scheduler\Entities\ScheduleLog[]|\Illuminate\Database\Eloquent\Collection $logs
+ * @property-read ScheduleLog[]|Collection $logs
  */
 final class Schedule extends Model
 {
@@ -40,15 +40,13 @@ final class Schedule extends Model
 
     protected $casts = [
         'options' => 'json',
+        'enabled' => false,
     ];
 
     protected $attributes = [
         'options' => '{}',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function logs(): HasMany
     {
         return $this->hasMany(ScheduleLog::class, 'schedule_id');

@@ -23,11 +23,10 @@ class CreateSchedulerTable extends Migration
             $table->string('caption');
             $table->text('schedule')->nullable();
             $table->string('event')->nullable();
+            $table->boolean('enabled')->default(false);
             $table->string('job');
             $table->string('delay')->nullable();
-            $table->string('options');
-
-            $table->boolean('enabled');
+            $table->text('options')->nullable(); //encrypted data, not json
             $table->timestamps();
             $table->softDeletes();
         });
