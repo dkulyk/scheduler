@@ -9,7 +9,7 @@ use DtKt\Nova\Policies\ModelPolicy;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SchedulePolicy
+ * Class SchedulePolicy.
  */
 class ScheduleLogPolicy extends ModelPolicy
 {

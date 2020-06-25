@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Jobs;
 
-use DateInterval;
 use Carbon\Carbon;
+use DateInterval;
 use DKulyk\Scheduler\Entities\Schedule;
-use Illuminate\Bus\Queueable;
-
 use Illuminate\Bus\Dispatcher;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 use Throwable;
 
 /**
@@ -42,14 +41,12 @@ final class ScheduleJob implements ShouldQueue
         ]);
 
         try {
-
             $result = $dispatcher->dispatchNow($application->make($this->schedule->job, ['options' => $this->schedule->options]));
 
             $log->update([
                 'status' => 1,
                 'stopped_at' => Carbon::now(),
-                'exception' =>
-                    json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+                'exception' => json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ]);
         } catch (Throwable $exception) {
             $log->update([

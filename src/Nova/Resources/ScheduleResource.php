@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Nova\Resources;
 
-use Laravel\Nova\Resource;
-use Illuminate\Http\Request;
-use DKulyk\Scheduler\Entities;
-use Illuminate\Console\Scheduling\Schedule;
-use RabbitCMS\Modules\Concerns\BelongsToModule;
-use DKulyk\Scheduler\Nova\Actions\AddScheduleAction;
 use DKulyk\Eloquent\Extensions\Nova\Filters\EnabledFilter;
+use DKulyk\Scheduler\Entities;
+use DKulyk\Scheduler\Nova\Actions\AddScheduleAction;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\{Boolean, HasMany, ID, Text, Textarea};
+use Laravel\Nova\Resource;
+use RabbitCMS\Modules\Concerns\BelongsToModule;
 
 /**
  * Class ScheduleResource.
@@ -54,7 +53,7 @@ class ScheduleResource extends Resource
                 ->rules(['required', 'min:1'])
                 ->hideFromIndex()
                 ->alwaysShow()
-                ->canSee(fn() => ! is_null($this->resource->schedule)),
+                ->canSee(fn () => ! is_null($this->resource->schedule)),
 
             Text::make($module->trans('scheduler.Delay'), 'delay')
                 ->rules(['regex:/^P(\d+Y)?(\d+M)?(\d+D)?(T(?=\d)(\d+H)?(\d+M)?(\d+S)?)?$/'])

@@ -7,8 +7,8 @@ namespace DKulyk\Scheduler\Nova\Actions;
 use AwesomeNova\Actions\ToolAction;
 use DKulyk\Scheduler\Entities\Schedule;
 use DKulyk\Scheduler\Facades\Scheduler;
-use RabbitCMS\Modules\Concerns\BelongsToModule;
 use Laravel\Nova\Fields\{ActionFields, Select, Text, Textarea};
+use RabbitCMS\Modules\Concerns\BelongsToModule;
 
 /**
  * Class AddScheduleAction.
