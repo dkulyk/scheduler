@@ -6,7 +6,7 @@ namespace DKulyk\Scheduler;
 
 use Illuminate\Bus\Dispatcher;
 use DKulyk\Scheduler\Jobs\ScheduleJob;
-use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Console\Scheduling\{CallbackEvent, Schedule};
 
 /**
  * Class ScheduleRegistrar.
@@ -51,7 +51,7 @@ class ScheduleRegistrar
         $this->scheduler = $scheduler;
     }
 
-    public function register(Entities\Schedule $schedule):CallbackEvent
+    public function register(Entities\Schedule $schedule): CallbackEvent
     {
         $event = $this->scheduler->call(function (Dispatcher $dispatcher) use ($schedule) {
             $dispatcher->dispatch(new ScheduleJob($schedule));
