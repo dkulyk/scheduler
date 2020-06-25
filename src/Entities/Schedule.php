@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace DKulyk\Scheduler\Entities;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\{Collection, Model, Relations\HasMany, SoftDeletes};
 use DKulyk\Eloquent\Extensions\Concerns\HasEnabled;
-use DKulyk\Scheduler\Support\CryptOptions;
+use Illuminate\Database\Eloquent\{Collection, Model, Relations\HasMany, SoftDeletes};
 
 /**
  * Class Schedule.
