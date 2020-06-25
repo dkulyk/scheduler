@@ -42,7 +42,8 @@ final class ScheduleJob implements ShouldQueue
         ]);
 
         try {
-            $result = $dispatcher->dispatchNow($application->make($this->schedule->job, $this->schedule->options));
+
+            $result = $dispatcher->dispatchNow($application->make($this->schedule->job, ['options' => $this->schedule->options]));
 
             $log->update([
                 'status' => 1,

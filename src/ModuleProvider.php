@@ -25,9 +25,7 @@ final class ModuleProvider extends ServiceProvider
         $this->app->afterResolving(Schedule::class, function (Schedule $scheduler) {
             $registrar = new ScheduleRegistrar($scheduler);
             Entities\Schedule::query()->whereNotNull('schedule')
-                ->each(function (Entities\Schedule $schedule) use ($registrar) {
-                    $registrar->register($schedule);
-                }, 100);
+                ->each(fn(Entities\Schedule $schedule) => $registrar->register($schedule), 100);
         });
     }
 }
