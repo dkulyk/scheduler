@@ -24,6 +24,7 @@ class ScheduleRegistrar
         'hourlyAt',
         'daily',
         'dailyAt',
+        'twiceDaily',
         'weekly',
         'weeklyOn',
         'monthly',
