@@ -23,6 +23,8 @@ final class ScheduleJob implements ShouldQueue
     use SerializesModels;
     use Queueable;
 
+    public $tries = 1;
+
     private Schedule $schedule;
 
     public function __construct(Schedule $schedule)
