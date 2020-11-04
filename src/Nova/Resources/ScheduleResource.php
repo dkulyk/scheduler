@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler\Nova\Resources;
 
+use DKulyk\Scheduler\Nova\Actions\RunScheduleJob;
+use Illuminate\Http\Resources\MergeValue;
 use Laravel\Nova\Resource;
 use Illuminate\Http\Request;
 use DKulyk\Scheduler\Entities;
@@ -85,25 +87,18 @@ class ScheduleResource extends Resource
         ];
     }
 
-    /**
-     * @param  Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
+    public function filters(Request $request): array
     {
         return [
             new EnabledFilter(),
         ];
     }
 
-    /**
-     * @param  Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
+    public function actions(Request $request): array
     {
         return [
             new AddScheduleAction(),
+            new RunScheduleJob(),
         ];
     }
 }

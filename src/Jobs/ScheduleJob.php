@@ -34,7 +34,7 @@ final class ScheduleJob implements ShouldQueue
         }
     }
 
-    public function handle(Dispatcher $dispatcher, Application $application)
+    public function handle(Dispatcher $dispatcher, Application $application): void
     {
         $log = $this->schedule->logs()->create([
             'started_at' => Carbon::now(),
