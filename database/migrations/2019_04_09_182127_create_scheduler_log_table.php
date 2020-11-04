@@ -19,7 +19,7 @@ class CreateSchedulerLogTable extends Migration
             $table->unsignedInteger('schedule_id');
             $table->unsignedTinyInteger('status')->default(0);
             $table->text('exception')->nullable();
-            $table->timestamp('started_at');
+            $table->timestamp('started_at')->nullable();
             $table->timestamp('stopped_at')->nullable();
 
             $table->foreign('schedule_id')
