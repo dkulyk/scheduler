@@ -6,6 +6,8 @@ namespace DKulyk\Scheduler\Nova\Resources;
 
 use DKulyk\Scheduler\Nova\Actions\RunScheduleJob;
 use Illuminate\Http\Resources\MergeValue;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use Illuminate\Http\Request;
 use DKulyk\Scheduler\Entities;
@@ -100,5 +102,12 @@ class ScheduleResource extends Resource
             new AddScheduleAction(),
             new RunScheduleJob(),
         ];
+    }
+
+    public function availableActions(NovaRequest $request)
+    {
+        return parent::availableActions($request)
+            ->when($this->resource->exists, fn(Collection $actions) => $actions
+                ->filter->authorizedToRun($request, $this->resource));
     }
 }

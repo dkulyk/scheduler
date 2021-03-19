@@ -10,46 +10,36 @@ use DKulyk\Scheduler\Facades\Scheduler;
 use RabbitCMS\Modules\Concerns\BelongsToModule;
 use Laravel\Nova\Fields\{ActionFields, Select, Text, Textarea};
 
-/**
- * Class AddScheduleAction.
- */
 class AddScheduleAction extends ToolAction
 {
     use BelongsToModule;
 
-    /**
-     * @return string
-     */
-    public function name()
+    public function __construct()
+    {
+        $this->onlyOnIndex()->standalone();
+    }
+
+    public function name(): string
     {
         return self::module()->trans('scheduler.Adding schedule');
     }
 
-    /**
-     * @return string
-     */
-    public function uriKey()
+    public function uriKey(): string
     {
         return 'add-schedule';
     }
 
-    /**
-     * @return string
-     */
-    public function label()
+    public function label(): string
     {
         return self::module()->trans('scheduler.Add schedule');
     }
 
-    public function handle(ActionFields $fields)
+    public function handle(ActionFields $fields): void
     {
         Schedule::query()->create($fields->getAttributes());
     }
 
-    /**
-     * @return array
-     */
-    public function fields()
+    public function fields(): array
     {
         $module = self::module();
 

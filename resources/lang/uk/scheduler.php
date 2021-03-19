@@ -19,4 +19,6 @@ return [
     'Finished' => 'Завершено',
     'Started' => 'Початок',
     'Stopped' => 'Кінець',
+
+    'Run now' => 'Запустити'
 ];

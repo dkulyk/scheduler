@@ -24,48 +24,27 @@ class LogResource extends Resource
 
     public static $displayInNavigation = false;
 
-    /**
-     * @return string
-     */
-    public static function uriKey()
+    public static function uriKey(): string
     {
         return 'scheduler-log';
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorizedToDelete(Request $request)
+    public function authorizedToDelete(Request $request): bool
     {
         return false;
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public function authorizedToUpdate(Request $request)
+    public function authorizedToUpdate(Request $request): bool
     {
         return false;
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    public static function authorizedToCreate(Request $request)
+    public static function authorizedToCreate(Request $request): bool
     {
         return false;
     }
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function fields(Request $request)
+    public function fields(Request $request): array
     {
         $module = self::module();
 

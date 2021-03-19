@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler;
 
+use Carbon\Carbon;
+use DKulyk\Scheduler\Entities\ScheduleLog;
+use Illuminate\Bus\Batch;
 use Illuminate\Bus\Dispatcher;
 use DKulyk\Scheduler\Jobs\ScheduleJob;
 use Illuminate\Console\Scheduling\{CallbackEvent, Schedule};
+use Illuminate\Support\Facades\Bus;
 
 /**
  * Class ScheduleRegistrar.
@@ -53,17 +57,14 @@ class ScheduleRegistrar
         'between',
     ];
 
-    private Schedule $scheduler;
-
-    public function __construct(Schedule $scheduler)
+    public function __construct(private Schedule $scheduler)
     {
-        $this->scheduler = $scheduler;
     }
 
     public function register(Entities\Schedule $schedule): CallbackEvent
     {
-        $event = $this->scheduler->call(function (Dispatcher $dispatcher) use ($schedule) {
-            $dispatcher->dispatch(new ScheduleJob($schedule));
+        $event = $this->scheduler->call(function (Scheduler $scheduler) use ($schedule) {
+            $scheduler->run($schedule);
         });
 
         foreach (preg_split('/\\r?\\n/', $schedule->schedule) as $line) {
@@ -77,4 +78,5 @@ class ScheduleRegistrar
 
         return $event;
     }
+
 }
