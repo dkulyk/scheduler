@@ -45,7 +45,8 @@ final class ScheduleJob implements ShouldQueue
 
         try {
 
-            $result = $dispatcher->dispatchNow($application->make($this->schedule->job, ['options' => $this->schedule->options]));
+            $result = $dispatcher->dispatchNow($application->make($this->schedule->job,
+                ['options' => $this->schedule->options]));
 
             $log->update([
                 'status' => 1,
@@ -62,5 +63,10 @@ final class ScheduleJob implements ShouldQueue
 
             throw $exception;
         }
+    }
+
+    public function displayName(): string
+    {
+        return $this->schedule->job;
     }
 }
