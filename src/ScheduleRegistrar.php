@@ -65,7 +65,9 @@ class ScheduleRegistrar
     {
         $event = $this->scheduler->call(function (Scheduler $scheduler) use ($schedule) {
             $scheduler->run($schedule);
-        });
+        })->description($schedule->caption);
+
+        $event->command = $schedule->job;
 
         foreach (preg_split('/\\r?\\n/', $schedule->schedule) as $line) {
             $line = explode(':', $line, 2);

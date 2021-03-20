@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace DKulyk\Scheduler;
 
-use DKulyk\Scheduler\Entities\ScheduleLog;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use DKulyk\Scheduler\Entities;
 
-/**
- * Class ModuleProvider.
- */
 final class ModuleProvider extends ServiceProvider
 {
     public function register()
     {
         Relation::morphMap([
-            'scheduler' => Schedule::class,
-            'scheduler_log' => ScheduleLog::class,
+            'scheduler' => Entities\Schedule::class,
+            'scheduler_log' => Entities\ScheduleLog::class,
         ]);
 
         $this->app->singleton(Scheduler::class, fn() => new Scheduler($this->app));

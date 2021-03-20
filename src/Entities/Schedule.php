@@ -14,6 +14,7 @@ use DKulyk\Scheduler\Support\CryptOptions;
  * @property-read int $id
  * @property string|null $schedule
  * @property string|null $event
+ * @property string $caption
  * @property string $job
  * @property bool $enabled
  * @property string $delay
