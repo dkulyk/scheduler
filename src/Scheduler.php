@@ -58,6 +58,7 @@ final class Scheduler
         }
 
         $batch
+            ->allowFailures()
             ->name("schedule:{$log->id}")
             ->then([self::class, 'complete'])
             ->catch([self::class, 'catch']);
