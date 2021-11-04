@@ -39,6 +39,16 @@ class ScheduleResource extends Resource
         return false;
     }
 
+    public static function group(): string
+    {
+        return self::module()->trans('scheduler.Settings');
+    }
+
+    public static function label(): string
+    {
+        return self::module()->trans('scheduler.Schedulers');
+    }
+
     public function fields(Request $request): array
     {
         $module = static::module();

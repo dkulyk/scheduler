@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 return [
+    'Settings' => 'Налаштування',
+    'Schedulers' => 'Заплановані події',
     'Scheduled' => 'Запланована подія',
     'Add schedule' => 'Запланована подія',
     'Adding schedule' => 'Додавання запланованої події',
@@ -20,5 +22,5 @@ return [
     'Started' => 'Початок',
     'Stopped' => 'Кінець',
 
-    'Run now' => 'Запустити'
+    'Run now' => 'Запустити',
 ];
