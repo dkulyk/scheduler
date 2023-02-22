@@ -24,9 +24,9 @@ final class ScheduleLog extends Model
         'exception',
     ];
 
-    protected $dates = [
-        'started_at',
-        'stopped_at',
+    protected $casts = [
+        'started_at' => 'datetime',
+        'stopped_at' => 'datetime',
     ];
 
     public function schedule(): BelongsTo
